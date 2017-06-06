@@ -1,0 +1,9 @@
+<% if current_user.nil? %>
+  <%= render 'devise/sessions/new' %>
+<% else %>
+  <% if current_user.admin? %>
+    <%= render 'pages/admin_home' %>
+  <% else %>
+    <%= render 'pages/student_home' %>
+  <% end %>
+<% end %>
