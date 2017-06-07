@@ -1,11 +1,11 @@
 class PairsController < ApplicationController
-  def index
-    @pairs = Pairs.all
-  end
+  # def index
+  #   @pairs = Pair.date_on_day(day)
+  # end
 
   def show
     user = current_user
-    cluster = Cluster.find_by(date: Date.now)
-    @pair = cluster.pair.user
+    @pair = Pair.user.date_on_day(Date.current)
   end
+
 end
