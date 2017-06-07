@@ -1,5 +1,8 @@
-//= require jquery
-//= require bootstrap-sprockets
-//= require jquery_ujs
 //= require turbolinks
+//= require jquery
+//= require jquery-ui/widgets/datepicker
+// require jquery-ui/widgets/multiDatesPicker
+
+//= require jquery_ujs
+//= require bootstrap-sprockets
 //= require_tree .

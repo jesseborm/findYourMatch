@@ -1,10 +1,25 @@
 <%= form_for @cluster_assign do |f| %>
 
   <div class="form-group">
-    <%= f.date_select :day, class: 'form-control' %>
+    <%= f.text_field :day %>
   </div>
 
   <div class="actions">
     <%= f.submit "Generate pairs", class: "btn btn-primary" %>
   </div>
 <% end %>
+
+
+<script>
+  $(function() {
+
+    $('#cluster_day').multiDatesPicker({
+      dateFormat: 'dd-mm-yy'
+    });
+    //
+    // $('#booking_ends_at').datepicker({
+    //   dateFormat: 'dd-mm-yy'
+    // });
+
+    });
+</script>

@@ -7,14 +7,9 @@ Rails.application.routes.draw do
 
   get 'pairs/show'
 
-  get 'clusters/index'
 
-  get 'clusters/show'
 
-  get 'clusters/create'
-
-  post 'clusters/assign'
-
+  resources :clusters, only: [:index, :show, :update]
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
