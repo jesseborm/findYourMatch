@@ -1,1 +1,20 @@
 <h2>You're an admin. Groovy!</h2>
+
+
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3>Pairs for today</h3>
+  </div>
+
+  <div class="panel-body">
+    <table class="table table-striped">
+      <% @cluster.pairs.each do |pair| %>
+        <% users = pair.users.to_a %>
+        <tr>
+          <td><%= users[0].email %></td>
+          <td><%= users[1].email %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
