@@ -1,7 +1,7 @@
-<%= form_for clusters_assign_path, method: :post do |f| %>
+<%= form_for @cluster_assign do |f| %>
 
   <div class="form-group">
-    <%= f.date_select :release_date, class: 'form-control' %>
+    <%= f.date_select :day, class: 'form-control' %>
   </div>
 
   <div class="actions">
