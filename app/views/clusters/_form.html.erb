@@ -1,0 +1,10 @@
+<%= form_for clusters_assign_path, method: :post do |f| %>
+
+  <div class="form-group">
+    <%= f.date_select :release_date, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Generate pairs", class: "btn btn-primary" %>
+  </div>
+<% end %>
