@@ -6,10 +6,10 @@ class Pair < ApplicationRecord
     self.cluster.day
   end
 
-  def date_on_day(day, day_end)
-    self.cluster.each |cluster| do
-      cluster.where(day: day)
-    end
-  end
+  # def date_on_day(day, day_end)
+  #   self.cluster.each |cluster| do
+  #     cluster.where(day: day)
+  #   end
+  # end
 
 end

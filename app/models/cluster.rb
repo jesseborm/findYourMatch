@@ -7,4 +7,5 @@ class Cluster < ApplicationRecord
   end
 
 
+
 end
