@@ -1,24 +1,48 @@
-<button type="button" class="btn btn-default clickadyclick">Show dates</button>
-<%= link_to 'Admin panel', users_index_path, class: 'btn btn-default text-right' %>
-<br>
-<br>
-<div id="new-pair-form" style="display:none;">
-  <%= render 'clusters/form' %>
+<div class="view-matches-per-day">
+  <%= link_to "View matches per day", "#", class: "btn btn-default clickadyclick" %>
+  <div id="select-pair-form" style="display:none;">
+    <%= render 'clusters/view_form' %>
+  </div>
 </div>
+
+<div class="select-dates-for-matches">
+  <%= link_to "Select dates for teamwork projects", "#", class: "btn btn-default clackadyclock" %>
+  <div id="view-pair-form" style="display:none;">
+    <%= render 'clusters/select_form' %>
+  </div>
+</div>
+
+<%= link_to 'Admin panel', users_index_path, class: 'btn btn-default text-right' %>
+
 <br>
 <div class="today", data-date=<%= @date %>></div>
 <div class='matches-for-day'>
   <div class="panel panel-primary">
     <div class="panel-heading">
-      <h3>Pairs for today</h3>
+      <%= link_to raw("<icon class='btn btn-lg glyphicon glyphicon-chevron-left pull-left'></icon>"), root_path %>
+      <%= link_to raw("<icon class='btn btn-lg glyphicon glyphicon-chevron-right pull-right'></icon>"), root_path %>
+      <h3 class= "text-center">Pairs for
+        <% if @cluster.nil? %>
+          <%= 'today' %>
+        <% else %>
+            <%= @cluster.day %>
+        <% end %>
+      </h3>
     </div>
 
     <div class="panel-body">
       <table class="table table-striped">
-        <tr>
-          <td></td>
-          <td></td>
-        </tr>
+        <% if @cluster_index.nil? %>
+          <%= 'No pairs assigned for today' %>
+        <% else %>
+          <% @cluster.pairs.each do |pair| %>
+            <% users = pair.users.to_a %>
+            <tr>
+              <td><%= users[0].email %></td>
+              <td><%= users[1].email %></td>
+            </tr>
+          <% end %>
+        <% end %>
       </table>
     </div>
   </div>

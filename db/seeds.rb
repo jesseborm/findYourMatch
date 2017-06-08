@@ -27,8 +27,8 @@ students = [
   tim = User.create!(email: 'tim@match.com', password: '123qwf')
 ]
 
-cluster1 = Cluster.create!(day: '2017-06-06', assigned: true)
-cluster2 = Cluster.create!(day: '2017-06-07', assigned: true)
+cluster1 = Cluster.create!(day: Date.today, assigned: true)
+cluster2 = Cluster.create!(day: Date.tomorrow, assigned: true)
 
 students.shuffle!
 for i in 0..8 do
