@@ -2,7 +2,7 @@ class PairsController < ApplicationController
 
   def index
     user = current_user
-    @pairs = user.pairs
+    @pairs = user.pairs.where.not(day: nil).where('day < ?', Date.today).order(day: :desc)
   end
 
   def show

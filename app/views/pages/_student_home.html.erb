@@ -6,18 +6,13 @@
 
   <div class="panel-body">
     <table class="table table-striped">
-      <% if @cluster.nil? %>
+      <% if @pair.nil? %>
         <%= 'You have no match for today' %>
       <% else %>
-        <% @cluster.pairs.each do |pair| %>
-          <% if pair.users.include?(current_user) %>
-            <tr>
-              <td><%= pair.users[0].email %></td>
-              <td><%= pair.users[1].email %></td>
-            </tr>
-            <% break %>
-          <% end %>
-        <% end %>
+        <tr>
+          <td><%= @pair.users[0].email %></td>
+          <td><%= @pair.users[1].email %></td>
+        </tr>
       <% end %>
     </table>
   </div>
