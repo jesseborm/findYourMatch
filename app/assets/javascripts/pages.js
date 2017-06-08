@@ -4,12 +4,25 @@
 $(document).ready(function() {
   // debugger;
 
-  $('.clickadyclick').on('click', function() {
-    // event.preventDefault();
-    // debugger;
+  $('.clickadyclick').on('click', showSelectPairsForm);
+  $('.clackadyclock').on('click', showViewPairsForm);
+  $('.glyphicon-chevron-right').on('click', displayNextAssignedPair);
 
-    $('#new-pair-form').slideDown(350);
-    $('#new-pair-form').css("display", "block");
 
-  });
 });
+
+
+function showViewPairsForm() {
+  $('#view-pair-form').slideDown(350);
+  $('#view-pair-form').css("display", "block");
+};
+
+function showSelectPairsForm() {
+  $('#select-pair-form').slideDown(350);
+  $('#select-pair-form').css("display", "block");
+};
+
+function displayNextAssignedPair() {
+  $('#cluster-day')
+
+};
