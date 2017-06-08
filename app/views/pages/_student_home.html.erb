@@ -1,1 +1,23 @@
-<h2>You're a student. Cool!</h2>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3>Your pair for today</h3>
+  </div>
+
+  <div class="panel-body">
+    <table class="table table-striped">
+      <% if @cluster.nil? %>
+        <%= 'You have no match for today' %>
+      <% else %>
+        <% @cluster.pairs.each do |pair| %>
+          <% if pair.users.include?(current_user) %>
+            <tr>
+              <td><%= pair.users[0].email %></td>
+              <td><%= pair.users[1].email %></td>
+            </tr>
+            <% break %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>
