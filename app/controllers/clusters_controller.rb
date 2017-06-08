@@ -1,11 +1,13 @@
 class ClustersController < ApplicationController
-  before_action :set_cluster, only: %i[show update]
+  before_action :set_cluster, only: %i[show edit update]
 
   def index
     @clusters = Cluster.all
   end
 
   def show; end
+
+  def edit; end
 
   def update
     @cluster.update(cluster_params.merge(assigned: true))

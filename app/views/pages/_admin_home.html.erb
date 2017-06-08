@@ -1,5 +1,8 @@
-<%= link_to "Generate pairs", edit_cluster_path, remote: true, class: "btn btn-default" %>
-<div id="new-pair-form" style="display:none;"></div>
+<%= link_to "Show dates", "#", class: "btn btn-default clickadyclick" %>
+<div id="new-pair-form" style="display:none;">
+  <%= render 'clusters/form' %>
+</div>
+
 
 
 <br>
@@ -11,12 +14,16 @@
 
   <div class="panel-body">
     <table class="table table-striped">
-      <% @cluster.pairs.each do |pair| %>
-        <% users = pair.users.to_a %>
-        <tr>
-          <td><%= users[0].email %></td>
-          <td><%= users[1].email %></td>
-        </tr>
+      <% if @cluster.nil? %>
+        <%= 'No pairs assigned for today' %>
+      <% else %>
+        <% @cluster.pairs.each do |pair| %>
+          <% users = pair.users.to_a %>
+          <tr>
+            <td><%= users[0].email %></td>
+            <td><%= users[1].email %></td>
+          </tr>
+        <% end %>
       <% end %>
     </table>
   </div>
