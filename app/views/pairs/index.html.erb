@@ -1,9 +1,8 @@
 <h1>Your past matches</h1>
 <% @pairs.each do |pair| %>
-  <% next if pair.date.nil? || pair.date == Date.today %>
   <div class="panel panel-success">
     <div class="panel-heading">
-      <h4><%= pair.date.strftime("%A %d %B %Y") %></h4>
+      <h4><%= pair.day.strftime("%A %d %B %Y") %></h4>
     </div>
 
     <div class="panel-body">
