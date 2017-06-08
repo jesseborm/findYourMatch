@@ -1,0 +1,21 @@
+<%= form_for @cluster_assign do |f| %>
+
+  <div class="form-group">
+    <%= f.text_field :day, placeholder: "Select a date to see the matches of that day", size: 50, id: "form-1" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "[#FIXME]", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+
+<script>
+  $(function() {
+
+    $('#form-1').datepicker({
+      dateFormat: 'dd-mm-yy'
+    });
+
+  });
+</script>

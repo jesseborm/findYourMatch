@@ -7,8 +7,8 @@ Rails.application.routes.draw do
 
   get 'pairs/show'
 
-
-
+  # get 'cluster/show', to: 'pages#home'
+#
 
   resources :clusters, only: %i[index show update edit]
 

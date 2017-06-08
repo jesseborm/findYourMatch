@@ -1,9 +1,18 @@
 
-<%= link_to "Show dates", "#", class: "btn btn-default clickadyclick" %>
-<div id="new-pair-form" style="display:none;">
-  <%= render 'clusters/form' %>
+
+<div class="view-matches-per-day">
+  <%= link_to "View matches per day", "#", class: "btn btn-default clickadyclick" %>
+  <div id="select-pair-form" style="display:none;">
+    <%= render 'clusters/view_form' %>
+  </div>
 </div>
 
+<div class="select-dates-for-matches">
+  <%= link_to "Select dates for teamwork projects", "#", class: "btn btn-default clackadyclock" %>
+  <div id="view-pair-form" style="display:none;">
+    <%= render 'clusters/select_form' %>
+  </div>
+</div>
 
 
 <br>
@@ -16,7 +25,7 @@
       <% if @cluster.nil? %>
         <%= 'today' %>
       <% else %>
-        <%= @cluster.day %>
+          <%= @cluster.day %>
       <% end %>
     </h3>
   </div>
@@ -24,7 +33,7 @@
 
   <div class="panel-body">
     <table class="table table-striped">
-      <% if @cluster.nil? %>
+      <% if @cluster_index.nil? %>
         <%= 'No pairs assigned for today' %>
       <% else %>
         <% @cluster.pairs.each do |pair| %>
