@@ -1,6 +1,7 @@
-<div class="panel panel-primary">
+<h1>Your match of today</h1>
+<div class="panel panel-success">
   <div class="panel-heading">
-    <h3>Your pair for today</h3>
+    <h4><%= Date.today.strftime("%A %d %B %Y") %></h4>
   </div>
 
   <div class="panel-body">
@@ -21,3 +22,4 @@
     </table>
   </div>
 </div>
+<%= link_to 'See past matches', pairs_index_url, class: 'btn btn-warning' %>
