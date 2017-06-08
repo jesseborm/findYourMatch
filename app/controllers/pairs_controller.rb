@@ -9,4 +9,12 @@ class PairsController < ApplicationController
     user = current_user
     @pair = Pair.user.date_on_day(Date.current)
   end
+
+  def get_by_date
+    @cluster = Cluster.find_by_day(params[:day])
+    @pairs = @cluster.pairs
+    respond_to do |format|
+      format.json { render json: @pairs }
+    end
+  end
 end

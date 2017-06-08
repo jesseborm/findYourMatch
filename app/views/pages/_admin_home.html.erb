@@ -6,24 +6,20 @@
   <%= render 'clusters/form' %>
 </div>
 <br>
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <h3>Pairs for today</h3>
-  </div>
+<div class="today", data-date=<%= @date %>></div>
+<div class='matches-for-day'>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <h3>Pairs for today</h3>
+    </div>
 
-  <div class="panel-body">
-    <table class="table table-striped">
-      <% if @cluster.nil? %>
-        <%= 'No pairs assigned for today' %>
-      <% else %>
-        <% @cluster.pairs.each do |pair| %>
-          <% users = pair.users.to_a %>
-          <tr>
-            <td><%= users[0].email %></td>
-            <td><%= users[1].email %></td>
-          </tr>
-        <% end %>
-      <% end %>
-    </table>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
   </div>
 </div>

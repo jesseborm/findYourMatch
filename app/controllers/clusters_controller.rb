@@ -5,7 +5,11 @@ class ClustersController < ApplicationController
     @clusters = Cluster.all
   end
 
-  def show; end
+  def show
+    respond_to do |format|
+      format.json { render json: @cluster.pairs.first.users }
+    end
+  end
 
   def edit; end
 
