@@ -10,8 +10,17 @@
 
 <div class="panel panel-primary">
   <div class="panel-heading">
-    <h3>Pairs for today</h3>
+    <%= link_to raw("<icon class='btn btn-lg glyphicon glyphicon-chevron-left pull-left'></icon>"), root_path %>
+    <%= link_to raw("<icon class='btn btn-lg glyphicon glyphicon-chevron-right pull-right'></icon>"), root_path %>
+    <h3 class= "text-center">Pairs for
+      <% if @cluster.nil? %>
+        <%= 'today' %>
+      <% else %>
+        <%= @cluster.day %>
+      <% end %>
+    </h3>
   </div>
+
 
   <div class="panel-body">
     <table class="table table-striped">

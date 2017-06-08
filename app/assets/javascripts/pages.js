@@ -4,12 +4,18 @@
 $(document).ready(function() {
   // debugger;
 
-  $('.clickadyclick').on('click', function() {
-    // event.preventDefault();
-    // debugger;
+  $('.clickadyclick').on('click', showPairsForm);
+  $('.glyphicon-chevron-right').on('click', displayNextAssignedPair);
 
-    $('#new-pair-form').slideDown(350);
-    $('#new-pair-form').css("display", "block");
 
-  });
 });
+
+
+function showPairsForm() {
+  $('#new-pair-form').slideDown(350);
+  $('#new-pair-form').css("display", "block");
+};
+function displayNextAssignedPair() {
+  $('.')
+
+};
