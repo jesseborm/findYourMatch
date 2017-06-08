@@ -1,13 +1,11 @@
-
-<%= link_to "Show dates", "#", class: "btn btn-default clickadyclick" %>
+<button type="button" class="btn btn-default clickadyclick">Show dates</button>
+<%= link_to 'Admin panel', users_index_path, class: 'btn btn-default text-right' %>
+<br>
+<br>
 <div id="new-pair-form" style="display:none;">
   <%= render 'clusters/form' %>
 </div>
-
-
-
 <br>
-
 <div class="panel panel-primary">
   <div class="panel-heading">
     <h3>Pairs for today</h3>
