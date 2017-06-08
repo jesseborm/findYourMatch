@@ -1,7 +1,5 @@
 /*
  *= require jquery-ui/datepicker
- require jquery-ui/widgets/selectable
-
  */
 
 @import "bootstrap-sprockets";
@@ -9,4 +7,9 @@
 
 .container {
   max-width: 1200px;
+}
+
+.panel-primary > .panel-heading {
+  background-color: lighten(Blue, 30%);
+  border-color: lighten(Blue, 30%);
 }

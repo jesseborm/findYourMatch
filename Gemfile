@@ -38,6 +38,9 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 # Use for datepicker
 gem 'jquery-ui-rails'
+# For multi-dates-selection
+gem 'multi-dates-picker-rails'
+
 
 # Use jQuery for easier javascript
 gem 'jquery-rails', '~> 4.3.1'
