@@ -16,4 +16,12 @@ class UsersController < ApplicationController
       format.json { render json: @user }
     end
   end
+
+  def get_by_pair
+    @pair = Pair.find(params[:id])
+    @users = @pair.users
+    respond_to do |format|
+      format.json { render json: @users }
+    end
+  end
 end

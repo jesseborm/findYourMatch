@@ -2,6 +2,8 @@ class PagesController < ApplicationController
   def home
     @clusters = Cluster.where(assigned: true).order(:day).to_a
     @cluster = Cluster.find_by(day: Date.today)
+    @date = Date.today
+    
     # if @cluster.nil?
     #   @cluster_index = nil
     # else

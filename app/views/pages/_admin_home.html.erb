@@ -15,32 +15,35 @@
 <%= link_to 'Admin panel', users_index_path, class: 'btn btn-default text-right' %>
 
 <br>
-<div class="panel panel-primary">
-  <div class="panel-heading">
-    <%= link_to raw("<icon class='btn btn-lg glyphicon glyphicon-chevron-left pull-left'></icon>"), root_path %>
-    <%= link_to raw("<icon class='btn btn-lg glyphicon glyphicon-chevron-right pull-right'></icon>"), root_path %>
-    <h3 class= "text-center">Pairs for
-      <% if @cluster.nil? %>
-        <%= 'today' %>
-      <% else %>
-          <%= @cluster.day %>
-      <% end %>
-    </h3>
-  </div>
-
-  <div class="panel-body">
-    <table class="table table-striped">
-      <% if @cluster_index.nil? %>
-        <%= 'No pairs assigned for today' %>
-      <% else %>
-        <% @cluster.pairs.each do |pair| %>
-          <% users = pair.users.to_a %>
-          <tr>
-            <td><%= users[0].email %></td>
-            <td><%= users[1].email %></td>
-          </tr>
+<div class="today", data-date=<%= @date %>></div>
+<div class='matches-for-day'>
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      <%= link_to raw("<icon class='btn btn-lg glyphicon glyphicon-chevron-left pull-left'></icon>"), root_path %>
+      <%= link_to raw("<icon class='btn btn-lg glyphicon glyphicon-chevron-right pull-right'></icon>"), root_path %>
+      <h3 class= "text-center">Pairs for
+        <% if @cluster.nil? %>
+          <%= 'today' %>
+        <% else %>
+            <%= @cluster.day %>
         <% end %>
-      <% end %>
-    </table>
+      </h3>
+    </div>
+
+    <div class="panel-body">
+      <table class="table table-striped">
+        <% if @cluster_index.nil? %>
+          <%= 'No pairs assigned for today' %>
+        <% else %>
+          <% @cluster.pairs.each do |pair| %>
+            <% users = pair.users.to_a %>
+            <tr>
+              <td><%= users[0].email %></td>
+              <td><%= users[1].email %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </table>
+    </div>
   </div>
 </div>

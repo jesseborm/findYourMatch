@@ -1,0 +1,21 @@
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3>Pairs for today</h3>
+  </div>
+
+  <div class="panel-body">
+    <table class="table table-striped">
+      <% if Cluster.find_by_day(datum).nil? %>
+        <%= 'No pairs assigned for today' %>
+      <% else %>
+        <% Cluster.find_by_day(datum).pairs.each do |pair| %>
+          <% users = pair.users.to_a %>
+          <tr>
+            <td><%= users[0].email %></td>
+            <td><%= users[1].email %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -11,6 +11,10 @@ Rails.application.routes.draw do
 
   put 'users/set_role'
 
+  post 'pairs/get_by_date'
+
+  post 'users/get_by_pair'
+
   resources :clusters, only: %i[index show update edit]
 
   devise_for :users
