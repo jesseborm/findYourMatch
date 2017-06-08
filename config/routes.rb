@@ -7,8 +7,9 @@ Rails.application.routes.draw do
 
   get 'pairs/show'
 
+  get 'users/index'
 
-
+  put 'users/set_role'
 
   resources :clusters, only: %i[index show update edit]
 

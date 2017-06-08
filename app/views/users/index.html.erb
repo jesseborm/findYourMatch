@@ -1,0 +1,19 @@
+<h1>Admin Panel</h1>
+<br>
+<table class="table">
+  <% @users.each do |user| %>
+    <tr data-id=<%= user.id %>>
+      <td class="text-center"><%= user.email %></td>
+      <td class="text-center">
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-success <%= 'active' unless user.admin? %> knop">
+            <input type="radio" name="options" id="option1" autocomplete="off"> Student
+          </label>
+          <label class="btn btn-success <%= 'active' if user.admin? %> knop">
+            <input type="radio" name="options" id="option2" autocomplete="off"> Admin
+          </label>
+        </div>
+      </td>
+    </tr>
+  <% end %>
+</table>
