@@ -1,23 +1,43 @@
 // $('#new-pair-form').css("display", "block");
 
+var today = new Date();
 
 $(document).ready(function() {
   // debugger;
-  var date = $('.today').data('date');
+  var date = today;
   createTable(date);
 
   $('.clickadyclick').on('click', showSelectPairsForm);
   $('.clackadyclock').on('click', showViewPairsForm);
-  $('.glyphicon-chevron-right').on('click', displayNextAssignedPair);
+  $('#prev-date').on('click', function() {
+    date = previousDay(date);
+    createTable(date);
+  });
+  $('#next-date').on('click', function() {
+    date = nextDay(date);
+    createTable(date);
+  });
   $('#assign-matches').on('click', assignPairsForDates);
 
   $('#display-matches').on('click', function(event) {
     event.preventDefault();
     createTable($('input[id=form-1]').val());
   });
-
-
 });
+
+function previousDay(date) {
+  date = new Date(date);
+  date -= 86400000;
+  date = new Date(date);
+  return date;
+}
+
+function nextDay(date) {
+  date = new Date(date);
+  date = date.valueOf() + 86400000;
+  date = new Date(date);
+  return date;
+}
 
 function assignPairsForDates(event) {
   event.preventDefault();
@@ -67,7 +87,9 @@ function createTableRow(pair_id) {
 
 function createTable(date) {
 
-  $('#table-header').text("Pairs for: " + date);
+  prettyDate = formatDate(date);
+
+  $('#table-header').text("Pairs for: " + prettyDate);
   $('.pair-row').remove();
 
   $.ajax({
@@ -80,10 +102,21 @@ function createTable(date) {
     dataType: 'json'
   })
   .done(function (data) {
-    for(var i=0; i < Object.keys(data).length; i++) {
-      createTableRow(data[i].id);
+    if (data.length === 0) {
+      noMatches(date);
+    } else {
+      for(var i=0; i < Object.keys(data).length; i++) {
+        createTableRow(data[i].id);
+      }
     }
   })
+}
+
+function noMatches(date) {
+  var text = $('<h3></h3').text("No matches for this day");
+  var button = $('<button type="button" class="btn btn-primary gen-for-date"></button>')
+    .text('Generate matches for this day');
+  $('#pairs-for-day').append(text).append(button);
 }
 
 function showViewPairsForm() {
@@ -100,3 +133,23 @@ function displayNextAssignedPair() {
   $('#cluster-day')
 
 };
+
+function formatDate(date) {
+  date = new Date(date);
+  var wday = date.getDay();
+  var mday = date.getDate();
+  var month = date.getMonth();
+  var year = date.getFullYear();
+  var wdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+  wday = wdays[wday-1];
+  if (today.getDate() === mday && today.getMonth() === month && today.getFullYear() === year) {
+    prettyDate = "today";
+  } else if (today.getDate() === mday - 1 && today.getMonth() === month && today.getFullYear() === year) {
+    prettyDate = "tomorrow";
+  } else if (today.getDate() === mday + 1 && today.getMonth() === month && today.getFullYear() === year) {
+    prettyDate = "yesterday";
+  }  else {
+    prettyDate = wday + ", " + mday + "-" + month + "-" + year;
+  }
+  return prettyDate;
+}
