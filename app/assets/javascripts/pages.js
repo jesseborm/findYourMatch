@@ -1,9 +1,10 @@
 // $('#new-pair-form').css("display", "block");
 
+var today = new Date();
 
 $(document).ready(function() {
   // debugger;
-  var date = $('.today').data('date');
+  var date = today;
   createTable(date);
 
   $('.clickadyclick').on('click', showSelectPairsForm);
@@ -86,7 +87,9 @@ function createTableRow(pair_id) {
 
 function createTable(date) {
 
-  $('#table-header').text("Pairs for: " + date);
+  prettyDate = formatDate(date);
+
+  $('#table-header').text("Pairs for: " + prettyDate);
   $('.pair-row').remove();
 
   $.ajax({
@@ -99,10 +102,21 @@ function createTable(date) {
     dataType: 'json'
   })
   .done(function (data) {
-    for(var i=0; i < Object.keys(data).length; i++) {
-      createTableRow(data[i].id);
+    if (data.length === 0) {
+      noMatches(date);
+    } else {
+      for(var i=0; i < Object.keys(data).length; i++) {
+        createTableRow(data[i].id);
+      }
     }
   })
+}
+
+function noMatches(date) {
+  var text = $('<h3></h3').text("No matches for this day");
+  var button = $('<button type="button" class="btn btn-primary gen-for-date"></button>')
+    .text('Generate matches for this day');
+  $('#pairs-for-day').append(text).append(button);
 }
 
 function showViewPairsForm() {
@@ -119,3 +133,23 @@ function displayNextAssignedPair() {
   $('#cluster-day')
 
 };
+
+function formatDate(date) {
+  date = new Date(date);
+  var wday = date.getDay();
+  var mday = date.getDate();
+  var month = date.getMonth();
+  var year = date.getFullYear();
+  var wdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+  wday = wdays[wday-1];
+  if (today.getDate() === mday && today.getMonth() === month && today.getFullYear() === year) {
+    prettyDate = "today";
+  } else if (today.getDate() === mday - 1 && today.getMonth() === month && today.getFullYear() === year) {
+    prettyDate = "tomorrow";
+  } else if (today.getDate() === mday + 1 && today.getMonth() === month && today.getFullYear() === year) {
+    prettyDate = "yesterday";
+  }  else {
+    prettyDate = wday + ", " + mday + "-" + month + "-" + year;
+  }
+  return prettyDate;
+}
