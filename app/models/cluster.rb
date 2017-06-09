@@ -2,29 +2,6 @@ class Cluster < ApplicationRecord
   has_many :pairs
   validates_uniqueness_of :day
 
-  def next_cluster
-    # puts "*" * 50
-    # puts "first"
-    @cluster = Cluster.where("assigned = ? AND day > ?", true, self.day).order(:day).first
-    # debugger
-    # self.where("assigned = ?, id > ?", true, id).first
-    redirect_to root_url
-  end
-
-  # def back
-  #   next_cluster
-  #   debugger
-  #   @cluster = @temp
-  # end
-
-  # def nexttt
-  #   next_day =
-  # end
-  # def next_assigned_day
-  #   Cluster.find_by_assigned(:day)
-  # end
-
-
   def date_on_day(day)
     Cluster.find_by_day(day)
   end

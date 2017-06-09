@@ -14,9 +14,11 @@ class ClustersController < ApplicationController
   def edit; end
 
   def update
-    @cluster.update(cluster_params.merge(assigned: true))
-    Pair.set_date(@cluster.pairs)
-    redirect_to :root
+    if Cluster.find_by_day(cluster_params[:day]).nil?
+      @cluster.update(cluster_params.merge(assigned: true))
+      Pair.set_date(@cluster.pairs)
+    end
+    redirect_to :root, notice: 'Pairs created successfully'
   end
 
   private
