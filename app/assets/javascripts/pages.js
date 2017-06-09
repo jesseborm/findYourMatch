@@ -9,7 +9,13 @@ $(document).ready(function() {
   $('.clickadyclick').on('click', showSelectPairsForm);
   $('.clackadyclock').on('click', showViewPairsForm);
   $('.glyphicon-chevron-right').on('click', displayNextAssignedPair);
+  $('#display-matches').on('click', function(event) {
+    event.preventDefault();
 
+    createTable($('input[id=form-1]').val());
+    // debugger;
+
+  } )
 
 });
 
@@ -41,6 +47,8 @@ function createTableRow(pair_id) {
 }
 
 function createTable(date) {
+
+  $('tr').remove();
 
   $.ajax({
     type: 'POST',
