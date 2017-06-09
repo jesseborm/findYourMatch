@@ -21,7 +21,10 @@ $(document).ready(function() {
 
   $('#display-matches').on('click', function(event) {
     event.preventDefault();
-    createTable($('input[id=form-1]').val());
+    date = new Date($('input[id=form-1]').val());
+    createTable(date);
+    $('#select-pair-form').slideUp(350);
+    $('input[id=form-1]').val(null);
   });
 });
 
@@ -43,6 +46,9 @@ function assignPairsForDates(event) {
   event.preventDefault();
 
   var dates = $('input[id=form-2]').val();
+
+  $('#view-pair-form').slideUp(350);
+  $('input[id=form-2]').val(null);
 
   $.ajax({
     type: 'POST',
@@ -113,8 +119,8 @@ function createTable(date) {
 }
 
 function noMatches(date) {
-  var text = $('<h3></h3').text("No matches for this day");
-  var button = $('<button type="button" class="btn btn-primary gen-for-date"></button>')
+  var text = $('<h3 class="pair-row"></h3').text("No matches for this day");
+  var button = $('<button type="button" class="btn btn-primary gen-for-date pair-row"></button>')
     .text('Generate matches for this day');
   $('#pairs-for-day').append(text).append(button);
 }
@@ -140,8 +146,8 @@ function formatDate(date) {
   var mday = date.getDate();
   var month = date.getMonth();
   var year = date.getFullYear();
-  var wdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
-  wday = wdays[wday-1];
+  var wdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  wday = wdays[wday];
   if (today.getDate() === mday && today.getMonth() === month && today.getFullYear() === year) {
     prettyDate = "today";
   } else if (today.getDate() === mday - 1 && today.getMonth() === month && today.getFullYear() === year) {
