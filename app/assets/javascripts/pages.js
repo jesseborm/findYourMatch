@@ -8,16 +8,35 @@ $(document).ready(function() {
 
   $('.clickadyclick').on('click', showSelectPairsForm);
   $('.clackadyclock').on('click', showViewPairsForm);
-  $('.glyphicon-chevron-right').on('click', displayNextAssignedPair);
+  $('#prev-date').on('click', function() {
+    date = previousDay(date);
+    createTable(date);
+  });
+  $('#next-date').on('click', function() {
+    date = nextDay(date);
+    createTable(date);
+  });
   $('#assign-matches').on('click', assignPairsForDates);
 
   $('#display-matches').on('click', function(event) {
     event.preventDefault();
     createTable($('input[id=form-1]').val());
   });
-
-
 });
+
+function previousDay(date) {
+  date = new Date(date);
+  date -= 86400000;
+  date = new Date(date);
+  return date;
+}
+
+function nextDay(date) {
+  date = new Date(date);
+  date = date.valueOf() + 86400000;
+  date = new Date(date);
+  return date;
+}
 
 function assignPairsForDates(event) {
   event.preventDefault();
