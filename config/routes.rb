@@ -5,8 +5,6 @@ Rails.application.routes.draw do
 
   get 'pairs/index'
 
-  get 'pairs/show'
-
   get 'users/index'
 
   put 'users/set_role'
@@ -14,6 +12,8 @@ Rails.application.routes.draw do
   post 'pairs/get_by_date'
 
   post 'users/get_by_pair'
+
+  post 'clusters/assign_by_dates'
 
   resources :clusters, only: %i[index show update edit]
 

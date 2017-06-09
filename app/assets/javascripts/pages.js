@@ -9,9 +9,34 @@ $(document).ready(function() {
   $('.clickadyclick').on('click', showSelectPairsForm);
   $('.clackadyclock').on('click', showViewPairsForm);
   $('.glyphicon-chevron-right').on('click', displayNextAssignedPair);
+  $('#assign-matches').on('click', assignPairsForDates);
+
+  $('#display-matches').on('click', function(event) {
+    event.preventDefault();
+    createTable($('input[id=form-1]').val());
+  });
 
 
 });
+
+function assignPairsForDates(event) {
+  event.preventDefault();
+
+  var dates = $('input[id=form-2]').val();
+
+  $.ajax({
+    type: 'POST',
+    url: '/clusters/update',
+    data: JSON.stringify({
+      dates: dates
+    }),
+    contentType: 'application/json',
+    dataType: 'json'
+  })
+  .done()
+
+};
+
 
 function createTableRow(pair_id) {
   $.ajax({
@@ -30,17 +55,20 @@ function createTableRow(pair_id) {
     var second_user = $('<td></td>')
       .html(data[1].email);
 
-    var tableRow = $('<tr>')
+    var tableRow = $('<tr class="pair-row">')
       .attr('data-id', pair_id)
       .append(first_user)
       .append(second_user)
       .append($('</tr>'));
 
-    $('table').append(tableRow);
+    $('#pairs-for-day').append(tableRow);
   })
 }
 
 function createTable(date) {
+
+  $('#table-header').text("Pairs for: " + date);
+  $('.pair-row').remove();
 
   $.ajax({
     type: 'POST',

@@ -3,12 +3,7 @@ class PagesController < ApplicationController
     @clusters = Cluster.where(assigned: true).order(:day).to_a
     @cluster = Cluster.find_by(day: Date.today)
     @date = Date.today
-    
-    # if @cluster.nil?
-    #   @cluster_index = nil
-    # else
-    #   @cluster_index = @clusters.index_of(@cluster)
-    # end
+
 
     unless Cluster.find_by_assigned(false)
       Cluster.generate(User.all_students)
@@ -18,8 +13,4 @@ class PagesController < ApplicationController
       @pair = current_user.pairs.find_by_day(Date.today)
     end
   end
-
-
-
-
 end
