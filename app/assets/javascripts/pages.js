@@ -5,6 +5,8 @@ $(document).ready(function() {
   var date = today;
   createTable(date);
 
+  // $('.pick-a-date').('click', getDates);
+
   $('.view-btn').on('click', showViewPairsForm);
   $('.select-btn').on('click', showSelectPairsForm);
   $('#prev-date').on('click', function() {
@@ -29,6 +31,20 @@ $(document).ready(function() {
   });
 });
 
+
+function getDates() {
+  $.ajax({
+    type: 'GET',
+    url: '/clusters/preselected_dates',
+    dataType: 'json'
+  })
+  .done(function(data) {
+    // debugger;
+    return data;
+  })
+};
+
+
 function previousDay(date) {
   date = new Date(date);
   date -= 86400000;
@@ -45,7 +61,7 @@ function nextDay(date) {
 
 function assignPairsForDates(event) {
   event.preventDefault();
-  
+
   var dates = $('input[id=form-2]').val();
 
   $('#select-pair-form').slideUp(350);

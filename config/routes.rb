@@ -15,6 +15,8 @@ Rails.application.routes.draw do
 
   post 'clusters/assign_by_dates'
 
+  get 'clusters/preselected_dates'
+
   resources :clusters, only: %i[index show update edit]
 
   devise_for :users
