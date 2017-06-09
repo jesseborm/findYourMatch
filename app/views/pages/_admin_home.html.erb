@@ -21,17 +21,11 @@
     <div class="panel-heading">
       <%= link_to raw("<icon class='btn btn-lg glyphicon glyphicon-chevron-left pull-left'></icon>"), root_path %>
       <%= link_to raw("<icon class='btn btn-lg glyphicon glyphicon-chevron-right pull-right'></icon>"), root_path %>
-      <h3 class= "text-center">Pairs for
-        <% if @cluster.nil? %>
-          <%= 'today' %>
-        <% else %>
-            <%= @cluster.day %>
-        <% end %>
-      </h3>
+      <h3 id="table-header" class="text-center"></h3>
     </div>
 
     <div class="panel-body">
-      <table class="table table-striped">
+      <table class="table table-striped" id="pairs-for-day">
       </table>
     </div>
   </div>

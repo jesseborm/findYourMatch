@@ -19,6 +19,18 @@ class ClustersController < ApplicationController
     redirect_to :root
   end
 
+  def assign_by_dates
+    dates = params[:dates].split(',')
+    dates.each do |date|
+      unless Cluster.find_by_assigned(false)
+        Cluster.generate(User.all_students)
+      end
+      cluster = Cluster.find_by_assigned(false)
+      cluster.update(cluster_params.merge(assigned: true))
+    end
+    redirect_to :root, notice: "Success!!! Pick a date to view pairs."
+  end
+
   private
 
   def set_cluster
