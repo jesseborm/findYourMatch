@@ -21,8 +21,11 @@ $(document).ready(function() {
 
   $('#display-matches').on('click', function(event) {
     event.preventDefault();
-    date = new Date($('input[id=form-1]').val());
-    createTable(date);
+    var input = $('input[id=form-1]').val();
+    if (input !== '') {
+      date = new Date(input);
+      createTable(date);
+    }
     $('#view-pair-form').slideUp(350);
     $('input[id=form-1]').val(null);
   });
@@ -128,11 +131,13 @@ function noMatches(date) {
 function showViewPairsForm() {
   $('#view-pair-form').slideDown(350);
   $('#view-pair-form').css("display", "block");
+  $('#select-pair-form').slideUp(350);
 };
 
 function showSelectPairsForm() {
   $('#select-pair-form').slideDown(350);
   $('#select-pair-form').css("display", "block");
+  $('#view-pair-form').slideUp(350);
 };
 
 function displayNextAssignedPair() {
