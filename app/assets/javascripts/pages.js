@@ -1,9 +1,7 @@
-// $('#new-pair-form').css("display", "block");
 
 var today = new Date();
 
 $(document).ready(function() {
-  // debugger;
   var date = today;
   createTable(date);
 
@@ -47,7 +45,7 @@ function nextDay(date) {
 
 function assignPairsForDates(event) {
   event.preventDefault();
-
+  
   var dates = $('input[id=form-2]').val();
 
   $('#select-pair-form').slideUp(350);
@@ -140,19 +138,16 @@ function showSelectPairsForm() {
   $('#view-pair-form').slideUp(350);
 };
 
-function displayNextAssignedPair() {
-  $('#cluster-day')
-
-};
-
 function formatDate(date) {
   date = new Date(date);
   var wday = date.getDay();
   var mday = date.getDate();
   var month = date.getMonth();
   var year = date.getFullYear();
+
   var wdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
   wday = wdays[wday];
+
   if (today.getDate() === mday && today.getMonth() === month && today.getFullYear() === year) {
     prettyDate = "today";
   } else if (today.getDate() === mday - 1 && today.getMonth() === month && today.getFullYear() === year) {

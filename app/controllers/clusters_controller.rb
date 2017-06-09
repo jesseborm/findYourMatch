@@ -32,7 +32,16 @@ class ClustersController < ApplicationController
       cluster.update(day: date, assigned: true)
       Pair.set_date(cluster.pairs)
     end
+    # notice: "Success! Pick a date to view the pairs."
     # redirect_to :root, notice: "Success!!! Pick a date to view pairs."
+  end
+
+  def preselected_dates
+    dates = Cluster.where('assigned = ?', true)
+    dates.each do |date|
+      days = []
+      days << date.day
+    end
   end
 
   private
