@@ -7,8 +7,8 @@ $(document).ready(function() {
   var date = today;
   createTable(date);
 
-  $('.clickadyclick').on('click', showSelectPairsForm);
-  $('.clackadyclock').on('click', showViewPairsForm);
+  $('.view-btn').on('click', showViewPairsForm);
+  $('.select-btn').on('click', showSelectPairsForm);
   $('#prev-date').on('click', function() {
     date = previousDay(date);
     createTable(date);
@@ -23,7 +23,7 @@ $(document).ready(function() {
     event.preventDefault();
     date = new Date($('input[id=form-1]').val());
     createTable(date);
-    $('#select-pair-form').slideUp(350);
+    $('#view-pair-form').slideUp(350);
     $('input[id=form-1]').val(null);
   });
 });
@@ -47,7 +47,7 @@ function assignPairsForDates(event) {
 
   var dates = $('input[id=form-2]').val();
 
-  $('#view-pair-form').slideUp(350);
+  $('#select-pair-form').slideUp(350);
   $('input[id=form-2]').val(null);
 
   $.ajax({

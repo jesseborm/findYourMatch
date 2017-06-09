@@ -1,13 +1,13 @@
 <div class="view-matches-per-day">
-  <%= link_to "Pick day to view matches", "#", class: "btn btn-default clickadyclick" %>
-  <div id="select-pair-form" style="display:none;">
+  <%= link_to "Pick day to view matches", "#", class: "btn btn-default view-btn" %>
+  <div id="view-pair-form" style="display:none;">
     <%= render 'clusters/view_form' %>
   </div>
 </div>
 
 <div class="select-dates-for-matches">
-  <%= link_to "Select dates for teamwork projects", "#", class: "btn btn-default clackadyclock" %>
-  <div id="view-pair-form" style="display:none;">
+  <%= link_to "Select dates for teamwork projects", "#", class: "btn btn-default select-btn" %>
+  <div id="select-pair-form" style="display:none;">
     <%= render 'clusters/select_form' %>
   </div>
 </div>
