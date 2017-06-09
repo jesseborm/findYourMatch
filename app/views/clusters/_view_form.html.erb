@@ -1,21 +1,24 @@
-<%= form_tag '/clusters' do %>
+<%= form_tag do |f| %>
 
   <div class="form-group">
-    <%= text_field_tag :day, nil, placeholder: "Select a date to see the matches of that day", size: 50, id: "form-1" %>
+    <%= f.text_field :day, placeholder: "Select a date to see the matches of that day", size: 50, id: "form-1" %>
   </div>
 
   <div class="actions">
-    <%= submit_tag "Display matches of the day", id: "display-matches" , class: "btn btn-primary" %>
+    <%= f.submit "Display matches of the day", id: "display-matches" , class: "btn btn-primary" %>
   </div>
 <% end %>
 
 
 <script>
+  var dates_arr = getDates();
+
   $(function() {
-
-    $('#form-1').datepicker({
-      dateFormat: 'mm-dd-yy'
+    debugger;
+    $('#form-2').multiDatesPicker({
+      dateFormat: 'dd-mm-yy',
+      // addDates: (dates_arr ? dates_arr : []),
+      maxPicks: 1
     });
-
   });
 </script>
