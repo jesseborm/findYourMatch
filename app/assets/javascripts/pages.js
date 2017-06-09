@@ -5,8 +5,8 @@ $(document).ready(function() {
   var date = today;
   createTable(date);
 
-  $('.clickadyclick').on('click', showSelectPairsForm);
-  $('.clackadyclock').on('click', showViewPairsForm);
+  $('.view-btn').on('click', showViewPairsForm);
+  $('.select-btn').on('click', showSelectPairsForm);
   $('#prev-date').on('click', function() {
     date = previousDay(date);
     createTable(date);
@@ -19,9 +19,12 @@ $(document).ready(function() {
 
   $('#display-matches').on('click', function(event) {
     event.preventDefault();
-    date = new Date($('input[id=form-1]').val());
-    createTable(date);
-    $('#select-pair-form').slideUp(350);
+    var input = $('input[id=form-1]').val();
+    if (input !== '') {
+      date = new Date(input);
+      createTable(date);
+    }
+    $('#view-pair-form').slideUp(350);
     $('input[id=form-1]').val(null);
   });
 });
@@ -45,7 +48,7 @@ function assignPairsForDates(event) {
   
   var dates = $('input[id=form-2]').val();
 
-  $('#view-pair-form').slideUp(350);
+  $('#select-pair-form').slideUp(350);
   $('input[id=form-2]').val(null);
 
   $.ajax({
@@ -126,14 +129,14 @@ function noMatches(date) {
 function showViewPairsForm() {
   $('#view-pair-form').slideDown(350);
   $('#view-pair-form').css("display", "block");
+  $('#select-pair-form').slideUp(350);
 };
 
 function showSelectPairsForm() {
   $('#select-pair-form').slideDown(350);
   $('#select-pair-form').css("display", "block");
-
+  $('#view-pair-form').slideUp(350);
 };
-
 
 function formatDate(date) {
   date = new Date(date);

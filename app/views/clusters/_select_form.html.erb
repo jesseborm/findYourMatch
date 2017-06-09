@@ -1,11 +1,11 @@
-<%= form_for @cluster_assign do |f| %>
+<%= form_tag '/clusters' do %>
 
   <div class="form-group">
-    <%= f.text_field :day, placeholder: "Please select some dates for pairs.", size: 50, id: "form-2" %>
+    <%= text_field_tag :day, nil, placeholder: 'Please select some dates for pairs.', size: 50, id: "form-2" %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Submit", id: "assign-matches", class: "btn btn-primary" %>
+    <%= submit_tag "Submit", id: "assign-matches", class: "btn btn-primary" %>
   </div>
 <% end %>
 
