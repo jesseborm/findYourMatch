@@ -1,5 +1,5 @@
 <% if current_user.try(:admin?) %>
-  <h1>Admin Panel</h1>
+  <h1>Admin Panel<%= link_to 'Back', root_path, class: 'btn btn-primary pull-right' %></h1>
   <br>
   <table class="table">
     <% @users.each do |user| %>
