@@ -11,14 +11,9 @@
 
 
 <script>
-  var dates_arr = getDates();
-
   $(function() {
-    debugger;
-    $('#form-2').multiDatesPicker({
-      dateFormat: 'dd-mm-yy',
-      // addDates: (dates_arr ? dates_arr : []),
-      maxPicks: 1
+    $('#form-1').datepicker({
+      dateFormat: 'mm-dd-yy'
     });
   });
 </script>
