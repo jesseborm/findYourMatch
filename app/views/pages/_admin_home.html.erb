@@ -32,17 +32,6 @@
 
     <div class="panel-body">
       <table class="table table-striped">
-        <% if @cluster_index.nil? %>
-          <%= 'No pairs assigned for today' %>
-        <% else %>
-          <% @cluster.pairs.each do |pair| %>
-            <% users = pair.users.to_a %>
-            <tr>
-              <td><%= users[0].email %></td>
-              <td><%= users[1].email %></td>
-            </tr>
-          <% end %>
-        <% end %>
       </table>
     </div>
   </div>

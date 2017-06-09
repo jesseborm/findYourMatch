@@ -11,8 +11,7 @@ class PairsController < ApplicationController
   end
 
   def get_by_date
-    @cluster = Cluster.find_by_day(params[:day])
-    @pairs = @cluster.pairs
+    @pairs = Pair.where(day: params[:day])
     respond_to do |format|
       format.json { render json: @pairs }
     end
