@@ -1,21 +1,21 @@
-<div class="view-matches-per-day">
-  <%= link_to "Pick day to view matches", "#", class: "btn btn-default view-btn pick-a-date" %>
-  <div id="view-pair-form" style="display:none;">
-    <%= render 'clusters/view_form' %>
+<div class="row">
+  <div class="view-matches-per-day col-md-3">
+    <%= link_to "Pick day to view matches", "#", class: "btn btn-default view-btn" %>
   </div>
+  <div class="select-dates-for-matches col-md-3">
+    <%= link_to "Select dates for teamwork projects", "#", class: "btn btn-default select-btn" %>
+  </div>
+  <%= link_to 'Admin panel', users_index_path, class: 'btn btn-default col-md-2 pull-right' %>
+</div>
+<div id="view-pair-form" style="display:none;">
+  <%= render 'clusters/view_form' %>
+</div>
+<div id="select-pair-form" style="display:none;">
+  <%= render 'clusters/select_form' %>
 </div>
 
-<div class="select-dates-for-matches">
-  <%= link_to "Select dates for teamwork projects", "#", class: "btn btn-default select-btn" %>
-  <div id="select-pair-form" style="display:none;">
-    <%= render 'clusters/select_form' %>
-  </div>
-</div>
-
-<%= link_to 'Admin panel', users_index_path, class: 'btn btn-default text-right' %>
 
 <br>
-<div class="today", data-date=<%= @date %>></div>
 <div class='matches-for-day'>
   <div class="panel panel-primary">
     <div class="panel-heading">

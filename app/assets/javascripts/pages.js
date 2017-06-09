@@ -1,5 +1,5 @@
 
-var today = new Date();
+var today = jsDateToIso(new Date());
 
 $(document).ready(function() {
   var date = today;
@@ -17,7 +17,13 @@ $(document).ready(function() {
     date = nextDay(date);
     createTable(date);
   });
-  $('#assign-matches').on('click', assignPairsForDates);
+  $('#assign-matches').on('click', function(event) {
+    event.preventDefault();
+
+    var dates = $('input[id=form-2]').val();
+
+    assignPairsForDates(dates);
+  });
 
   $('#display-matches').on('click', function(event) {
     event.preventDefault();
@@ -48,22 +54,18 @@ function getDates() {
 function previousDay(date) {
   date = new Date(date);
   date -= 86400000;
-  date = new Date(date);
+  date = jsDateToIso(new Date(date));
   return date;
 }
 
 function nextDay(date) {
   date = new Date(date);
   date = date.valueOf() + 86400000;
-  date = new Date(date);
+  date = jsDateToIso(new Date(date));
   return date;
 }
 
-function assignPairsForDates(event) {
-  event.preventDefault();
-
-  var dates = $('input[id=form-2]').val();
-
+function assignPairsForDates(dates) {
   $('#select-pair-form').slideUp(350);
   $('input[id=form-2]').val(null);
 
@@ -76,8 +78,11 @@ function assignPairsForDates(event) {
     contentType: 'application/json',
     dataType: 'json'
   })
-  .done()
-
+  .done(function(data) {
+    if (data.length === 1) {
+      createTable(data[0]);
+    }
+  })
 };
 
 
@@ -110,7 +115,7 @@ function createTableRow(pair_id) {
 
 function createTable(date) {
 
-  prettyDate = formatDate(date);
+  prettyDate = beautyDate(date);
 
   $('#table-header').text("Pairs for: " + prettyDate);
   $('.pair-row').remove();
@@ -138,8 +143,13 @@ function createTable(date) {
 function noMatches(date) {
   var text = $('<h3 class="pair-row"></h3').text("No matches for this day");
   var button = $('<button type="button" class="btn btn-primary gen-for-date pair-row"></button>')
-    .text('Generate matches for this day');
+    .text('Generate matches for this day').attr('data-date', date);
   $('#pairs-for-day').append(text).append(button);
+
+  $('.gen-for-date').on('click', function() {
+    date = ($('.gen-for-date').data('date'));
+    assignPairsForDates(date);
+  });
 }
 
 function showViewPairsForm() {
@@ -154,7 +164,7 @@ function showSelectPairsForm() {
   $('#view-pair-form').slideUp(350);
 };
 
-function formatDate(date) {
+function beautyDate(date) {
   date = new Date(date);
   var wday = date.getDay();
   var mday = date.getDate();
@@ -164,14 +174,19 @@ function formatDate(date) {
   var wdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
   wday = wdays[wday];
 
-  if (today.getDate() === mday && today.getMonth() === month && today.getFullYear() === year) {
+  var tdy = new Date();
+  if (tdy.getDate() === mday && tdy.getMonth() === month && tdy.getFullYear() === year) {
     prettyDate = "today";
-  } else if (today.getDate() === mday - 1 && today.getMonth() === month && today.getFullYear() === year) {
+  } else if (tdy.getDate() === mday - 1 && tdy.getMonth() === month && tdy.getFullYear() === year) {
     prettyDate = "tomorrow";
-  } else if (today.getDate() === mday + 1 && today.getMonth() === month && today.getFullYear() === year) {
+  } else if (tdy.getDate() === mday + 1 && tdy.getMonth() === month && tdy.getFullYear() === year) {
     prettyDate = "yesterday";
   }  else {
-    prettyDate = wday + ", " + mday + "-" + month + "-" + year;
+    prettyDate = wday + ", " + mday + "-" + (month + 1) + "-" + year;
   }
   return prettyDate;
+}
+
+function jsDateToIso(jsDate) {
+  return jsDate.toISOString().substr(0, 10);
 }

@@ -32,6 +32,9 @@ class ClustersController < ApplicationController
       cluster.update(day: date, assigned: true)
       Pair.set_date(cluster.pairs)
     end
+    respond_to do |format|
+      format.json { render json: dates }
+    end
     # notice: "Success! Pick a date to view the pairs."
     # redirect_to :root, notice: "Success!!! Pick a date to view pairs."
   end
