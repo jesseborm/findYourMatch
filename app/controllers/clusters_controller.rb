@@ -27,10 +27,12 @@ class ClustersController < ApplicationController
       unless Cluster.find_by_assigned(false)
         Cluster.generate(User.all_students)
       end
+      date = Date.parse(date)
       cluster = Cluster.find_by_assigned(false)
-      cluster.update(cluster_params.merge(assigned: true))
+      cluster.update(day: date, assigned: true)
+      Pair.set_date(cluster.pairs)
     end
-    redirect_to :root, notice: "Success!!! Pick a date to view pairs."
+    # redirect_to :root, notice: "Success!!! Pick a date to view pairs."
   end
 
   private

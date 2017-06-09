@@ -26,7 +26,7 @@ function assignPairsForDates(event) {
 
   $.ajax({
     type: 'POST',
-    url: '/clusters/update',
+    url: '/clusters/assign_by_dates',
     data: JSON.stringify({
       dates: dates
     }),
